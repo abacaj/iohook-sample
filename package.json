@@ -1,0 +1,13 @@
+{
+  "name": "iohook-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ./start.js"
+  },
+  "dependencies": {
+    "electron": "12.0.11",
+    "iohook": "./iohook"
+  }
+}

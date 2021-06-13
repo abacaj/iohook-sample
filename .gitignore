@@ -1,0 +1,14 @@
+.env
+.idea
+.vscode
+*.DS_Store
+*.iml
+*.log
+binding.gyp
+build
+builds
+docs/.vuepress/dist
+examples/electron-example/.DS_Store
+logs
+node_modules
+npm-debug.log*
