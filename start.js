@@ -1,7 +1,6 @@
 const { app, BrowserWindow, session } = require('electron');
 const path = require('path');
-// causes sigsegv
-const iohook = require('iohook');
+app.allowRendererProcessReuse = false;
 
 let mainWindow = null;
 
@@ -18,6 +17,7 @@ function createWindowDev() {
       nodeIntegration: false, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
+      preload: path.resolve(__dirname, 'preload.js'),
     },
   });
 
@@ -28,16 +28,8 @@ function createWindowDev() {
   });
 
   mainWindow.once('ready-to-show', () => {
-    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-      callback({
-        responseHeaders: {
-          ...details.responseHeaders,
-          'Content-Security-Policy': ["default-src 'none'"],
-        },
-      });
-    });
-
     mainWindow.focus();
+    mainWindow.webContents.openDevTools();
   });
 }
 
