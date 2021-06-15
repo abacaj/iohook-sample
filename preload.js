@@ -20,7 +20,7 @@ contextBridge.exposeInMainWorld('iohook', {
   off: (event) => {
     if (listeners.has(event)) {
       iohook.off(event, listeners.get(event));
-      listeners.delete(channel);
+      listeners.delete(event);
     }
   },
 });
