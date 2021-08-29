@@ -1,25 +1,19 @@
-const { app, BrowserWindow, session } = require('electron');
+const { app, BrowserWindow} = require('electron');
 const path = require('path');
 app.allowRendererProcessReuse = false;
 
 let mainWindow = null;
 
-function createWindowDev() {
+function createWindow() {
   mainWindow = new BrowserWindow({
     transparent: true,
     frame: false,
+    alwaysOnTop: true,
     resizable: false,
     maximizable: false,
     hasShadow: false,
     fullscreen: true,
-    acceptFirstMouse: true,
     show: true,
-    webPreferences: {
-      nodeIntegration: false, // is default value after Electron v5
-      contextIsolation: true, // protect against prototype pollution
-      enableRemoteModule: false, // turn off remote
-      preload: path.resolve(__dirname, 'preload.js'),
-    },
   });
 
   mainWindow.setIgnoreMouseEvents(false);
@@ -30,6 +24,8 @@ function createWindowDev() {
     mainWindow = null;
   });
 
+  mainWindow.setAlwaysOnTop(true, 'screen-saver', 1);
+
   mainWindow.once('ready-to-show', () => {
     mainWindow.focus();
     mainWindow.webContents.openDevTools({
@@ -38,7 +34,7 @@ function createWindowDev() {
   });
 }
 
-app.on('ready', createWindowDev);
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
   // close windows
