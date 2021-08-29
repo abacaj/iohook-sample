@@ -10,16 +10,27 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    </style>
   </head>
 
   <body>
     <!-- Add your site or application content here -->
     <p>Hello world! This is HTML5 Boilerplate.</p>
+
+    <button>Click me</button>
   </body>
 
   <script>
-    window.iohook.on('mousedown', (e) => {
-      console.log(e);
-    });
+    var btn = document.querySelector('button');
+
+    btn.addEventListener('click', () => {
+      console.log("clicked")
+    })
   </script>
 </html>

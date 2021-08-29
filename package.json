@@ -3,25 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "iohook": {
-    "targets": [
-      "electron-87"
-    ],
-    "platforms": [
-      "win32",
-      "darwin",
-      "linux"
-    ],
-    "arches": [
-      "x64",
-      "ia32"
-    ]
-  },
   "scripts": {
     "start": "electron ./start.js"
   },
   "dependencies": {
-    "electron": "12.0.11",
-    "iohook": "./iohook"
+    "electron": "12.0.11"
   }
 }

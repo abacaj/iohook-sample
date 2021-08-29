@@ -6,12 +6,13 @@ let mainWindow = null;
 
 function createWindowDev() {
   mainWindow = new BrowserWindow({
-    transparent: false,
-    frame: true,
-    resizable: true,
-    maximizable: true,
-    hasShadow: true,
-    minimizable: true,
+    transparent: true,
+    frame: false,
+    resizable: false,
+    maximizable: false,
+    hasShadow: false,
+    fullscreen: true,
+    acceptFirstMouse: true,
     show: true,
     webPreferences: {
       nodeIntegration: false, // is default value after Electron v5
@@ -21,6 +22,8 @@ function createWindowDev() {
     },
   });
 
+  mainWindow.setIgnoreMouseEvents(false);
+
   mainWindow.loadFile(path.join(__dirname, 'public', 'index.html'));
 
   mainWindow.on('closed', () => {
@@ -29,7 +32,9 @@ function createWindowDev() {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.focus();
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools({
+      mode: 'undocked'
+    });
   });
 }
 
